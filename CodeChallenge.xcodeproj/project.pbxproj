@@ -15,7 +15,6 @@
 		9347CE4E24DC654E00794183 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9347CE4C24DC654E00794183 /* LaunchScreen.storyboard */; };
 		9347CE5924DC654F00794183 /* CodeChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9347CE5824DC654F00794183 /* CodeChallengeTests.swift */; };
 		9347CE6424DC654F00794183 /* CodeChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9347CE6324DC654F00794183 /* CodeChallengeUITests.swift */; };
-		9347CE7524DD15D300794183 /* ContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9347CE7424DD15D300794183 /* ContentListViewController.swift */; };
 		9347CE7724DD15F100794183 /* ContentListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9347CE7624DD15F100794183 /* ContentListModel.swift */; };
 		9371491724F29572001F7F28 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9371491624F29572001F7F28 /* CoreDataStack.swift */; };
 		9371491924F295AB001F7F28 /* CoreDataManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9371491824F295AB001F7F28 /* CoreDataManger.swift */; };
@@ -60,7 +59,6 @@
 		9347CE5F24DC654F00794183 /* CodeChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CodeChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9347CE6324DC654F00794183 /* CodeChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeChallengeUITests.swift; sourceTree = "<group>"; };
 		9347CE6524DC654F00794183 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9347CE7424DD15D300794183 /* ContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewController.swift; sourceTree = "<group>"; };
 		9347CE7624DD15F100794183 /* ContentListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListModel.swift; sourceTree = "<group>"; };
 		9371491624F29572001F7F28 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		9371491824F295AB001F7F28 /* CoreDataManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManger.swift; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 		9347CE7324DD10E700794183 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9347CE7424DD15D300794183 /* ContentListViewController.swift */,
 				93D1638424DDC59B00EDC8D6 /* ContentTableViewCell.swift */,
 				9347CE4524DC654100794183 /* ViewController.swift */,
 				9334B0BE24F246C20023C7A3 /* ContentDetailViewController.swift */,
@@ -383,7 +380,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9371491924F295AB001F7F28 /* CoreDataManger.swift in Sources */,
-				9347CE7524DD15D300794183 /* ContentListViewController.swift in Sources */,
 				9347CE7724DD15F100794183 /* ContentListModel.swift in Sources */,
 				93D1638324DDA86500EDC8D6 /* ContentViewModel.swift in Sources */,
 				9334B0BF24F246C20023C7A3 /* ContentDetailViewController.swift in Sources */,

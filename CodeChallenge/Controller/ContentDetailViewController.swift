@@ -12,6 +12,7 @@ class ContentDetailViewController: UIViewController {
     var contentdetail :ContentListModelElement?
     var coreContent : Content?
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
     lazy var snapView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 20
@@ -27,15 +28,22 @@ class ContentDetailViewController: UIViewController {
             if let url = URL(string: coreContent?.data ?? "") {
                 img.load(url:url)}
         }else{
+            
             if let url = URL(string:contentdetail?.data ?? "") {
                 img.load(url: url)
             }}
+         
         return img
     }()
     
     lazy var snaptextView: UITextView = {
         let textview = UITextView()
-        textview.text = contentdetail?.data
+        textview.textAlignment = .left
+        if appDelegate.reachability.connection == .unavailable{
+            textview.text = coreContent?.data}
+        else{
+            textview.text = contentdetail?.data
+        }
         textview.font =  UIFont(name: "HelveticaNeue-Medium", size: 22)
         return textview
     }()
@@ -61,20 +69,25 @@ class ContentDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.activityIndicator.startAnimating()
         view.backgroundColor = .white
         self.view.addSubview(snapView)
+        activityIndicator.center =  CGPoint(x: self.snapView.bounds.size.width/2, y: self.snapView.bounds.size.height/2)
+        self.snapView.addSubview(activityIndicator)
         setUpNavigation()
-        addConstraintForButton()
+        addConstraintForLabel()
         addSuperviewContraint()
         if contentdetail?.type == .image{
             addContraintForImage()
         }else{
             addContraintForTextView()
         }
+        self.activityIndicator.stopAnimating()
         
     }
     func setUpNavigation() {
         navigationItem.title = "Content Detail"
+        self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.barTintColor = .black
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.titleTextAttributes = [
@@ -85,21 +98,14 @@ class ContentDetailViewController: UIViewController {
     func addSuperviewContraint(){
         snapView.snp.makeConstraints { (make) in
             make.top.bottom.left.right.equalTo(self.view)
-            
-            //        make.centerX.equalToSuperview() //1
-            //        make.centerY.equalToSuperview() //2
-            //        make.left.equalToSuperview()//.offset(50) //3
-            //        make.right.equalToSuperview()//.offset(-50) //4
-            //        make.height.equalToSuperview() //5
-            //        make.width.equalToSuperview()
-        }
+            }
     }
-    func addConstraintForButton()
+    func addConstraintForLabel()
     {
         self.snapView.addSubview(snapIdLbl)
         snapIdLbl.snp.makeConstraints { (make) in
             // make.bottom.equalToSuperview().offset(-20)
-            make.top.equalTo(200)
+            make.top.equalTo(400)
             make.left.equalToSuperview().offset(30)
             //  make.right.equalToSuperview().offset(-30)
             make.height.equalTo(30)
@@ -108,7 +114,7 @@ class ContentDetailViewController: UIViewController {
         self.snapView.addSubview(snapDateLbl)
         snapDateLbl.snp.makeConstraints { (make) in
             // make.bottom.equalToSuperview().offset(-20)
-            make.top.equalTo(200)
+            make.top.equalTo(400)
             // make.left.equalToSuperview().offset(30)
             make.right.equalToSuperview().offset(-30)
             make.height.equalTo(30)
@@ -119,9 +125,9 @@ class ContentDetailViewController: UIViewController {
         snaptextView.removeFromSuperview()
         self.snapView.addSubview(snapImg)
         snapImg.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(50) 
-            make.height.equalTo(100)
-            make.width.equalTo(100)
+            make.top.equalToSuperview().offset(50)
+            make.height.equalTo(300)
+            make.width.equalTo(300)
             make.centerX.equalToSuperview()
         }
     }
@@ -133,7 +139,7 @@ class ContentDetailViewController: UIViewController {
             make.top.equalToSuperview().offset(50)
             make.left.equalToSuperview().offset(30)
             make.right.equalToSuperview().offset(-30)
-            make.height.equalTo(100)
+            make.height.equalTo(300)
         }
     }
 }

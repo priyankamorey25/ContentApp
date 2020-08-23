@@ -11,6 +11,7 @@ import Alamofire
 import SnapKit
 import CoreData
 import Reachability
+
 class ViewController: UIViewController, UITableViewDelegate {
     let tableView = UITableView()
     let imgUser = UIImageView()
@@ -23,6 +24,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     var contentDetail:  ContentListModelElement?
     var reachability: Reachability!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
     var contentList: ContentListModel?{
         didSet {
             guard let contentList = contentList else { return }
@@ -31,6 +33,8 @@ class ViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.center =  CGPoint(x: self.view.bounds.size.width/2, y: self.view.bounds.size.height/2)
+        self.view.addSubview(activityIndicator)
         getContent()
     }
     
@@ -80,6 +84,8 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ContentTableViewCell
+        cell?.selectionStyle = .none
+        cell?.accessoryType = .disclosureIndicator
         if appDelegate.reachability.connection == .unavailable{ cell?.setupUI(model: nil, coreDataModel: conteEntity[indexPath.row])
         }else{
             if let content = contentList?[indexPath.row] {
@@ -109,8 +115,9 @@ extension ViewController: UITableViewDataSource {
             let coreDataContent = contentManager.fetchAllContentList()
             conteEntity = coreDataContent! ?? []
         }else
-        {
+        { self.activityIndicator.startAnimating()
             contentViewModel.fetchdata() { (content, error) in
+                
                 if let error = error {
                     print("Get weather error: \(error.localizedDescription)")
                     return
@@ -122,6 +129,7 @@ extension ViewController: UITableViewDataSource {
                     self.contentManager.addItem(id:content.id ,date:content.date ?? "",data:content.data ?? "",type:content.type.rawValue )
                 }
                 self.tableView.reloadData()
+                self.activityIndicator.stopAnimating()
             }
             
         }

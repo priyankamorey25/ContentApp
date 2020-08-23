@@ -9,7 +9,7 @@
 import UIKit
 
 class ContentTableViewCell: UITableViewCell {
-    let imgUser = UILabel()
+    let imgUser = UIImageView()
     let labUserName = UILabel()
     let labMessage = UILabel()
     let labTime = UILabel()
@@ -36,6 +36,7 @@ class ContentTableViewCell: UITableViewCell {
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[message]-|", options: [], metrics: nil, views: viewsDict))
         
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[labTime]-|", options: [], metrics: nil, views: viewsDict))
+        
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[message]-[labTime]-|", options: [], metrics: nil, views: viewsDict))
         
         NSLayoutConstraint.activate(allConstraints)
