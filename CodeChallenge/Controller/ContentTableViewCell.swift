@@ -10,26 +10,23 @@ import UIKit
 
 class ContentTableViewCell: UITableViewCell {
     let imgUser = UIImageView()
-    let labUserName = UILabel()
-    let labMessage = UILabel()
-    let labTime = UILabel()
+   
+    let idLbl = UILabel()
+    let dateLbl = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         imgUser.translatesAutoresizingMaskIntoConstraints = false
-        labUserName.translatesAutoresizingMaskIntoConstraints = false
-        labMessage.translatesAutoresizingMaskIntoConstraints = false
-        labTime.translatesAutoresizingMaskIntoConstraints = false
+        idLbl.translatesAutoresizingMaskIntoConstraints = false
+        dateLbl.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubview(imgUser)
-        contentView.addSubview(labUserName)
-        contentView.addSubview(labMessage)
-        contentView.addSubview(labTime)
+        contentView.addSubview(idLbl)
+        contentView.addSubview(dateLbl)
         let viewsDict = [
             "image": imgUser,
-            "username": labUserName,
-            "message": labMessage,
-            "labTime": labTime,
+            "message": idLbl,
+            "labTime": dateLbl,
         ]
         
         var allConstraints: [NSLayoutConstraint] = []
@@ -47,11 +44,11 @@ class ContentTableViewCell: UITableViewCell {
     }
     func setupUI (model:ContentListModelElement?,coreDataModel: Content?) {
         if let model = model{
-            labMessage.text = "Id: " + model.id
-            labTime.text = "Date " + (model.date ?? "")
+            idLbl.text = "Id: " + model.id
+            dateLbl.text = "Date " + (model.date ?? "")
         }else {
-            labMessage.text = "Id: " + (coreDataModel?.id ?? "")
-            labTime.text = "Date: " + (coreDataModel?.date ?? "")
+            idLbl.text = "Id: " + (coreDataModel?.id ?? "")
+            dateLbl.text = "Date: " + (coreDataModel?.date ?? "")
         }
     }
     

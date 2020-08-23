@@ -14,10 +14,6 @@ import Reachability
 
 class ViewController: UIViewController, UITableViewDelegate {
     let tableView = UITableView()
-    let imgUser = UIImageView()
-    let labUserName = UILabel()
-    let labMessage = UILabel()
-    let labTime = UILabel()
     var contentViewModel = ContentViewModel()
     var contentManager = ContentDataManager()
     var conteEntity = Array<Content>()
